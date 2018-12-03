@@ -14,28 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
 from django.urls import include
-from django.views.generic import RedirectView
+from django.urls import path
 from rest_framework import routers
-
 
 from catalog import api_views
 
-
 router = routers.DefaultRouter()
 router.register(r'category', api_views.CategoryViewSet)
+# router.register(r'product/list', api_views.ProductList, basename='products-list')
+router.register(r'product/category/(?P<category>.+)', api_views.ProductList, basename='products-list')
 router.register(r'product', api_views.ProductViewSet)
+router.register(r'order', api_views.OrderViewSet)
+
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(r'admin/', admin.site.urls),
     path(r'api/', include(router.urls)),
-]
-
-urlpatterns += [
-]
-
-urlpatterns += [
-    path('', RedirectView.as_view(url='/catalog/', permanent=True)),
 ]
