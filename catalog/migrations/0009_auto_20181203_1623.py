@@ -28,10 +28,15 @@ class Migration(migrations.Migration):
             name='product',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.Product'),
         ),
-        migrations.AlterField(
+        migrations.RemoveField(
             model_name='product',
             name='category',
-            field=models.ManyToManyField(related_name='categories', through='catalog.ProductCategory', to='catalog.Category'),
+        ),
+        migrations.AddField(
+            model_name='product',
+            name='category',
+            field=models.ManyToManyField(related_name='categories', through='catalog.ProductCategory',
+                                         to='catalog.Category'),
         ),
         migrations.AddField(
             model_name='productcategory',
