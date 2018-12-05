@@ -23,7 +23,7 @@ from catalog import api_views
 router = routers.DefaultRouter()
 router.register(r'category', api_views.CategoryViewSet)
 # router.register(r'product/list', api_views.ProductList, basename='products-list')
-router.register(r'product/category/(?P<category>.+)', api_views.ProductList, basename='products-list')
+router.register(r'product/category/(?P<category>[0-9]+)', api_views.ProductList, basename='products-list')
 router.register(r'product', api_views.ProductViewSet)
 router.register(r'order', api_views.OrderViewSet)
 

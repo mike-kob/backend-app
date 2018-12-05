@@ -17,6 +17,14 @@ class ProductViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, GenericVi
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        categories = self.request.query_params.get('category', None)
+        if categories is not None:
+            categories = categories.split(',')
+            queryset = queryset.filter(category__in=categories)
+        return queryset
+
 
 class OrderViewSet(mixins.CreateModelMixin, GenericViewSet):
     queryset = Order.objects.all()
@@ -27,5 +35,9 @@ class ProductList(mixins.ListModelMixin, GenericViewSet):
     serializer_class = ProductSerializer
 
     def get_queryset(self):
-        cat = self.kwargs['category']
-        return Product.objects.filter(category=cat)
+        """
+        This view should return a list of all the purchases for
+        the user as determined by the username portion of the URL.
+        """
+        category = self.kwargs['category']
+        return Product.objects.filter(category=category)

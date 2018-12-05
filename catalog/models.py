@@ -16,6 +16,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    # TODO rename to categories
     category = models.ManyToManyField(Category)
     name = models.CharField(max_length=255)
     description = models.TextField()
