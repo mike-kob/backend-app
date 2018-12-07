@@ -19,10 +19,19 @@ class ProductViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, GenericVi
 
     def get_queryset(self):
         queryset = Product.objects.all()
+
         categories = self.request.query_params.get('category', None)
         if categories is not None:
             categories = categories.split(',')
             queryset = queryset.filter(category__in=categories)
+        price = self.request.query_params.get('price', None)
+        if price is not None:
+            prices = price.split('-')
+            if prices[1] != "0":
+                queryset = queryset.filter(price__gt=prices[0], price__lt=prices[1])
+            else:
+                queryset = queryset.filter(price__gt=prices[0])
+
         return queryset
 
 
