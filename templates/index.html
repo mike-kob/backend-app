@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "/css/main.css" %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="wrapper">
+    <div class="content">
+        <nav class="navbar navbar-inverse header">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand logo" href="#">TechShop</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="#"><span class="glyphicon glyphicon-arrow-left go-return"></span></a></li>
+                    <li><a href="#" class="all_products">Всі товари</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Фільтр
+                            <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu categories">
+                            <li>
+                                <form id="select-form" autocomplete="off">
+                                    Category
+                                    <ul class="category">
+
+                                    </ul>
+
+                                    <div>Price</div>
+                                    <input class="price-range price-lo" type="number" placeholder="From" step="50">
+                                    <input class="price-range price-hi" type="number" placeholder="To" step="50">
+                                    <input type="submit" class="btn btn-primary subm-filter">
+                                </form>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" class="button-shopping-card"><span class="glyphicon glyphicon-shopping-cart"></span>
+                        Cart</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="aside col-xs-11 col-sm-11 col-md-11 col-lg-11">
+
+        </div>
+
+        <div class="cart-view hidden-cart">
+            <div class="shopping-cart-window">
+                <span class="cart-title">Your cart</span>
+
+                <span class="glyphicon glyphicon-minus close-cart"></span>
+                <ul class="cart-list">
+
+
+                </ul>
+                <!-- taken from https://www.w3schools.com/tags/tag_input.asp-->
+                <form id="buy-form" class="active-cart" autocomplete="on">
+                    Name:<input class="input-cart" type="text" name="flname"><br>
+                    E-mail: <input class="input-cart" type="email" name="email" autocomplete="off"><br>
+                    Phone: <input class="input-cart" type="tel" name="phone">
+                    <input type="submit" class="btn btn-primary subm">
+                </form>
+                <ul class="errors active-cart"></ul>
+                <p class="operation_ok active-cart"></p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <footer>
+            <p class="footer-name">Michael Kobelev</p>
+            <a href="http://tranquil-bayou-20279.herokuapp.com/admin">Admin</a>
+        </footer>
+    </div>
+</div>
+{% load static %}
+<script src="{% static "js/main1.js" %}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
